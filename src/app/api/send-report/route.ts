@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
         }))
 
     const page = await browser.newPage()
-    await page.goto(pdfPageUrl, { waitUntil: "networkidle0" })
+    await page.goto(pdfPageUrl, { waitUntil: "domcontentloaded" }) // much faster
 
     const pdfBuffer = await page.pdf({
       format: "A4",
