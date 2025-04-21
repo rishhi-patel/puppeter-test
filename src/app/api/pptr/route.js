@@ -4,6 +4,9 @@ import puppeteer from "puppeteer"
 
 export const dynamic = "force-dynamic"
 
+const remoteExecutablePath =
+  "https://github.com/Sparticuz/chromium/releases/download/v133.0.0/chromium-v133.0.0-pack.tar"
+
 let browser
 
 async function getBrowser() {
@@ -14,7 +17,7 @@ async function getBrowser() {
   if (isProd) {
     browser = await puppeteerCore.launch({
       args: chromium.args,
-      executablePath: await chromium.executablePath(),
+      executablePath: await chromium.executablePath(remoteExecutablePath),
       headless: chromium.headless,
     })
   } else {
