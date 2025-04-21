@@ -35,7 +35,8 @@ export async function POST(req: NextRequest) {
         }))
 
     const page = await browser.newPage()
-    await page.goto(pdfPageUrl, { waitUntil: "domcontentloaded" }) // much faster
+    await page.goto(pdfPageUrl, { waitUntil: "domcontentloaded" })
+    await page.waitForSelector("#final-report", { timeout: 8000 }) // replace with your actual selector
 
     const pdfBuffer = await page.pdf({
       format: "A4",
